@@ -266,13 +266,29 @@ layer {
   }
 }
 layer {
-  name: "accuracy"
+  name: "accuracy/top1"
   type: "Accuracy"
   bottom: "ip1"
   bottom: "label"
-  top: "accuracy"
+  top: "accuracy/top1"
   include {
     phase: TEST
+  }
+  accuracy_param {
+    top_k: 1
+  }
+}
+layer {
+  name: "accuracy/top5"
+  type: "Accuracy"
+  bottom: "ip1"
+  bottom: "label"
+  top: "accuracy/top5"
+  include {
+    phase: TEST
+  }
+  accuracy_param {
+    top_k: 5
   }
 }
 layer {
